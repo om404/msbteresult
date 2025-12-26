@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MSBTE Result – Summer 2025</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:#ffffff;
+}
+
+/* HEADER */
+.header{
+    text-align:center;
+    padding:20px;
+}
+.logo{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    border:1px solid #aaa;
+    margin-bottom:10px;
+    object-fit:cover;
+}
+
+.header h1{
+    margin:5px 0;
+    font-size:22px;
+}
+.header h2{
+    margin:0;
+    font-size:16px;
+}
+
+/* FORM BOX */
+.form-box{
+    width:600px;
+    margin:20px auto;
+    background:#ffffdd;
+    border:1px solid #ccc;
+    padding:20px;
+    border-radius:4px;
+}
+
+.row{
+    display:flex;
+    align-items:center;
+    margin-bottom:15px;
+}
+.row label{
+    width:260px;
+    font-weight:bold;
+    font-size:14px;
+}
+.row input,.row select{
+    width:300px;
+    padding:6px;
+    font-size:14px;
+}
+
+/* CAPTCHA */
+.captcha{
+    font-size:26px;
+    color:#b30000;
+    letter-spacing:3px;
+    text-decoration:line-through;
+    font-weight:bold;
+}
+
+/* BUTTON */
+.btn{
+    float:right;
+    padding:6px 18px;
+    font-size:14px;
+    background:#ffcc00;
+    border:2px solid #cc9900;
+    cursor:pointer;
+    border-radius:4px;
+}
+.btn:hover{
+    background:#ffdb4d;
+}
+
+/* RESULT IMAGE */
+.result-box{
+    width:900px;
+    margin:30px auto;
+    display:none; /* hidden by default */
+    border:1px solid #000;
+    padding:10px;
+}
+.result-box img{
+    width:100%;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <img src="111.png" class="logo" alt="MSBTE Logo">
+    <h1>Maharashtra State Board of Technical Education</h1>
+    <h2>महाराष्ट्र राज्य तंत्र शिक्षण मंडळ, मुंबई</h2>
+</div>
+`
+
+<!-- FORM -->
+<div class="form-box">
+    <div class="row">
+        <label>Select Enrollment No. or Seat No.</label>
+        <select>
+            <option>(See Below)</option>
+            <option>Enrollment No.</option>
+            <option>Seat No.</option>
+        </select>
+    </div>
+
+    <div class="row">
+        <label>Enter Enrollment No. or Seat No.</label>
+        <input type="text" placeholder="Enter Number">
+    </div>
+
+    <div class="row">
+        <label>Captcha</label>
+        <div class="captcha" id="captchaText"></div>
+    </div>
+
+    <div class="row">
+        <label>Type Above Captcha Here</label>
+        <input type="text" id="captchaInput">
+    </div>
+
+    <button class="btn" onclick="validateCaptcha()">ShowResult</button>
+    <div style="clear:both"></div>
+</div>
+
+<!-- RESULT IMAGE (HIDDEN INITIALLY) -->
+<div class="result-box" id="resultBox">
+    <img src="333.jpg" alt="MSBTE Result Image">
+</div>
+
+<script>
+let captchaCode="";
+
+function generateCaptcha(){
+    let chars="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+    captchaCode="";
+    for(let i=0;i<6;i++){
+        captchaCode+=chars[Math.floor(Math.random()*chars.length)];
+    }
+    document.getElementById("captchaText").innerText=captchaCode;
+}
+generateCaptcha();
+
+function validateCaptcha(){
+    let input=document.getElementById("captchaInput").value;
+
+    if(input !== captchaCode){
+        alert("Invalid Captcha!");
+        generateCaptcha();
+        return;
+    }
+
+    // SHOW IMAGE BELOW
+    document.getElementById("resultBox").style.display = "block";
+}
+</script>
+
+</body>
+</html>
